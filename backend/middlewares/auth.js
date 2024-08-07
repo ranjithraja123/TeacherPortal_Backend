@@ -1,7 +1,7 @@
 import  jwt  from "jsonwebtoken";
 import Student from "../models/Students.js";
 
-
+//middleware to protect the route using jsonwebtokens
 export const protect = async (req,res,next) => {
     let token;
     console.log("roken1",req.cookies)

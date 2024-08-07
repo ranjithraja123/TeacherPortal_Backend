@@ -19,6 +19,7 @@ const TeacherSchema = mongoose.Schema({
 
 },{timestamps:true})
 
+//Encrypting password
 TeacherSchema.pre('save', async function (next){
     if(!this.isModified('password')){
         return next()
@@ -28,10 +29,12 @@ TeacherSchema.pre('save', async function (next){
     next()
 })
 
+//check if password matches
 TeacherSchema.methods.matchPassword = async function (enteredPassword) {
     return await bcrypt.compare(enteredPassword, this.password)
 }
 
+//Get Token for a specified user (teacher)
 TeacherSchema.methods.getSignedJwtToken = function () {
     return jwt.sign({id:this._id}, process.env.JWT_SECRET,{
         expiresIn: process.env.JWT_EXPIRE

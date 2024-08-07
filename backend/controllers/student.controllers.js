@@ -1,5 +1,6 @@
 import Student from "../models/Students.js"
 
+//New Student to be created by Teacher
 export const createOrUpdateStudent = async (req, res) => {
     try {
         const { name, subject, mark } = req.body;
@@ -24,7 +25,7 @@ export const createOrUpdateStudent = async (req, res) => {
 };
 
 
-
+//View all students by teacher
 export const getAllStudents = async (req,res) => {
     try{
         const students = await Student.find();
@@ -40,6 +41,7 @@ export const getAllStudents = async (req,res) => {
     }
 }
 
+//view all students by id by teacher
 export const getStudentById = async (req,res) => {
     try{
         const students = await Student.findById(req.params.id)
@@ -51,7 +53,7 @@ export const getStudentById = async (req,res) => {
 }
 
 
-
+//update student details by teacher
 export const updateStudentById = async (req,res) => {
     try {
         const students = await Student.findByIdAndUpdate(req.params.id,req.body,{new:true});
@@ -62,7 +64,7 @@ export const updateStudentById = async (req,res) => {
     }
 }
 
-
+//Delete student by teacher
 export const deleteStudentById = async (req,res) => {
     try{
         const students = await Student.findByIdAndDelete(req.params.id);

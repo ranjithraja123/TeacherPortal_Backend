@@ -12,9 +12,8 @@ const PORT = process.env.PORT || 5000
 
 
 //middlewares
-app.use(express.json())
-app.use(cookieParser());
-
+app.use(express.json()) //to parse the json data
+app.use(cookieParser()); // to parse the data stored in cookies
 app.use('/api/auth',authRoutes)
 app.use('/api/students',studentRoutes)
 
